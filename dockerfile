@@ -10,9 +10,9 @@ RUN apt-get update && apt-get install -y \
   xz-utils \
   build-essential
 
-# Install Gleam (VERSION THAT ACTUALLY EXISTS)
-RUN wget https://github.com/gleam-lang/gleam/releases/download/v1.3.0/gleam-v1.3.0-x86_64-unknown-linux-musl.tar.gz \
-  && tar -xzf gleam-v1.3.0-x86_64-unknown-linux-musl.tar.gz \
+# Install Gleam v1.11.0 (confirmed valid)
+RUN wget https://github.com/gleam-lang/gleam/releases/download/v1.11.0/gleam-v1.11.0-x86_64-unknown-linux-musl.tar.gz \
+  && tar -xzf gleam-v1.11.0-x86_64-unknown-linux-musl.tar.gz \
   && mv gleam /usr/local/bin/gleam
 
 # Copy project files
