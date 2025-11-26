@@ -1,25 +1,19 @@
 # ---- Build stage ----
-FROM alpine:3.19 AS builder
+FROM erlang:26 AS builder
 
-# Install build dependencies
-RUN apk add --no-cache \
-  curl \
+WORKDIR /app
+
+# Install build deps
+RUN apt-get update && apt-get install -y \
   wget \
-  gcc \
-  g++ \
-  make \
-  erlang-dev \
-  erlang-erts \
-  erlang-kernel \
-  erlang-stdlib \
-  erlang-tools
+  curl \
+  xz-utils \
+  build-essential
 
-# Install Gleam (download official release)
+# Install Gleam manually
 RUN wget https://github.com/gleam-lang/gleam/releases/download/v1.4.0/gleam-v1.4.0-linux-amd64.tar.gz \
   && tar -xzf gleam-v1.4.0-linux-amd64.tar.gz \
   && mv gleam /usr/local/bin/gleam
-
-WORKDIR /app
 
 # Copy project files
 COPY . .
@@ -33,7 +27,7 @@ FROM erlang:26
 
 WORKDIR /app
 
-# Copy compiled build artifacts
+# Copy compiled output
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/gleam.toml ./gleam.toml
 
