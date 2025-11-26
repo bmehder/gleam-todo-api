@@ -7,10 +7,8 @@ import mist.{type Connection, type ResponseData}
 import todos
 
 pub fn main() {
-  // Our HTTP handler: takes a Request, returns a Response
   let handler = fn(req: Request(Connection)) -> Response(ResponseData) {
     case request.path_segments(req) {
-      // GET /todos
       ["todos"] -> {
         let json_body =
           todos.list_to_json(todos.all())
@@ -23,7 +21,6 @@ pub fn main() {
         |> response.set_body(mist.Bytes(bytes_tree.from_string(json_body)))
       }
 
-      // Anything else -> 404
       _ ->
         response.new(404)
         |> response.set_header("Access-Control-Allow-Origin", "*")
@@ -32,7 +29,6 @@ pub fn main() {
     }
   }
 
-  // Start Mist on localhost:3000
   let assert Ok(_) =
     handler
     |> mist.new
@@ -40,6 +36,5 @@ pub fn main() {
     |> mist.port(3000)
     |> mist.start
 
-  // Keep the server running
   process.sleep_forever()
 }
