@@ -34,4 +34,4 @@ ENV ERL_LIBS="/app/build/dev"
 
 EXPOSE 3000
 
-CMD ["erl", "-pa", "build/dev/erlang", "-eval", "todolist_api:main()"]
+CMD ["erl", "-pa", "build/dev/erlang", "-noshell", "-s", "todolist_api", "main"]
