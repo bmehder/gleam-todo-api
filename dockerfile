@@ -1,5 +1,5 @@
 # 1. Build stage
-FROM ghcr.io/gleam-lang/gleam:latest AS builder
+FROM ghcr.io/gleam-lang/gleam:v1.4.0 AS builder
 
 WORKDIR /app
 
