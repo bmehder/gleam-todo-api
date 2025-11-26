@@ -36,7 +36,7 @@ pub fn main() {
   let assert Ok(_) =
     handler
     |> mist.new
-    |> mist.bind("127.0.0.1")
+    |> mist.bind("0.0.0.0")
     |> mist.port(3000)
     |> mist.start
 
