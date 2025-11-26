@@ -1,5 +1,5 @@
 # 1. Build stage
-FROM ghcr.io/gleam-lang/gleam:v1.4.0 AS builder
+FROM ghcr.io/gleam-lang/gleam:1.3.1 AS builder
 
 WORKDIR /app
 
@@ -14,15 +14,13 @@ FROM erlang:26
 
 WORKDIR /app
 
-# Copy the Beam files (program + dependencies)
+# Copy build artifacts
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/gleam.toml ./gleam.toml
 
-# Tell Erlang where to find the BEAM files
+# Let Erlang find BEAM files
 ENV ERL_LIBS="/app/build/dev"
 
-# Expose port 3000 for Render to detect
 EXPOSE 3000
 
-# Start the Gleam app
 CMD ["erl", "-pa", "build/dev/erlang", "-eval", "todolist_api:main()"]
