@@ -10,9 +10,9 @@ RUN apt-get update && apt-get install -y \
   xz-utils \
   build-essential
 
-# Install Gleam manually
-RUN wget https://github.com/gleam-lang/gleam/releases/download/v1.4.0/gleam-v1.4.0-linux-amd64.tar.gz \
-  && tar -xzf gleam-v1.4.0-linux-amd64.tar.gz \
+# Install Gleam (actual existing version)
+RUN wget https://github.com/gleam-lang/gleam/releases/download/v1.3.2/gleam-v1.3.2-linux-amd64.tar.gz \
+  && tar -xzf gleam-v1.3.2-linux-amd64.tar.gz \
   && mv gleam /usr/local/bin/gleam
 
 # Copy project files
