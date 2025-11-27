@@ -26,4 +26,4 @@ WORKDIR /app
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/gleam.toml ./gleam.toml
 
-CMD ["erl", "-pa", "build/erlang", "-eval", "todolist_api:main()"]
+CMD ["erl", "-pa", "build/dev/erlang/*/ebin", "-eval", "todolist_api:main()"]
