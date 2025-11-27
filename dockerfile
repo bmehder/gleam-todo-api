@@ -1,3 +1,4 @@
+# force rebuild
 # ---- Build stage ----
 FROM erlang:26 AS builder
 
