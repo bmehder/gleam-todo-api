@@ -34,4 +34,4 @@ ENV ERL_LIBS="/app/build/erlang"
 
 EXPOSE 3000
 
-CMD ["erl", "-pa", "build/packages/*/_gleam_artefacts/erlang/*/ebin", "-pa", "build/erlang", "-noshell", "-eval", "todolist_api:main(), init:stop()"]
+CMD ["/bin/sh", "-c", "erl -pa build/erlang -pa build/packages/*/_gleam_artefacts/erlang/*/ebin -noshell -eval 'todolist_api:main(), init:stop()'"]
