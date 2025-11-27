@@ -1,0 +1,16 @@
+# Ignore everything except source code needed for the Gleam build
+.*
+
+# Allow specific items:
+!/src
+!/test
+!/gleam.toml
+!/manifest.toml
+!/README.md
+!/dockerfile
+
+# Additional ignores
+build/
+erl_crash.dump
+*.beam
+*.ez
