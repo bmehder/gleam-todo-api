@@ -30,8 +30,8 @@ WORKDIR /app
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/gleam.toml ./gleam.toml
 
-ENV ERL_LIBS="/app/build"
+ENV ERL_LIBS="/app/build/erlang"
 
 EXPOSE 3000
 
-CMD ["erl", "-pa", "build/erlang", "-noshell", "-s", "todolist_api", "main"]
+CMD ["erl", "-pa", "build/erlang", "-noshell", "-eval", "todolist_api:main(), init:stop()"]
